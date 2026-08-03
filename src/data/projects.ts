@@ -77,8 +77,8 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "TensorFlow", "scikit-learn", "DistilBERT", "Pandas"],
     gallery: [
-      { image: "projects/_sample.svg", caption: "Image models" },
-      { image: "projects/_sample2.svg", caption: "NLP models" },
+      { emoji: "🖼️", caption: "Image models" },
+      { emoji: "📝", caption: "NLP models" },
       { emoji: "📋", caption: "Tabular models" },
     ],
     links: { link: "#" },
@@ -169,9 +169,9 @@ export const projects: Project[] = [
       "based on 10+ years of field-sampling data (2013–2024) Public forecasting dashboard supporting real-world pest-control decisions for orchard growers"
     ],
     stack: ["Django", "Docker", "PostGIS", "PostgreSQL", "MQTT", "React"],
-    // cover: "/projects/samson/1.png",
+    cover: "/projects/samson/login-background.png",
     gallery: [
-      { image: "/projects/samson/1.png", caption: "Image models"},
+      { image: "/projects/samson/1.png", caption: "This bar chart visualizes the probability of green stink bug nymph hatching as predicted by the model. The color scale is based on cumulative degree days for the year 2025 and indicates the urgency of potential control measures. On April 21, 2025, with 219.7 DD, the model predicted that the calculated threshold would be exceeded. This is based on calculations from recent years."},
       { emoji: "🗺️", caption: "Geospatial data" },
       { emoji: "📊", caption: "ML statistics" },
     ],

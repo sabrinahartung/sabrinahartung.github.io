@@ -162,9 +162,8 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                   ) : (
                     tile
                   )}
-                  <figcaption className="mt-2 px-1 text-center text-xs text-faint">
-                    {g.caption}
-                  </figcaption>
+                  {/* Caption intentionally omitted here — it only appears in
+                      the enlarged Lightbox view. */}
                 </figure>
               );
             })}
