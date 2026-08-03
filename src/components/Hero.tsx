@@ -74,8 +74,8 @@ export default function Hero() {
         aria-label="Scroll down"
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 p-1.5">
-          <span className="h-2 w-1 animate-float rounded-full bg-white/70" />
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-hairline/30 p-1.5">
+          <span className="h-2 w-1 animate-float rounded-full bg-hairline/70" />
         </div>
       </a>
     </section>

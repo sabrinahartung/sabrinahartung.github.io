@@ -62,7 +62,7 @@ export default function ProjectCard({
 
         {/* Cover — real image when `cover` is set, otherwise emoji + gradient */}
         <div
-          className="relative mb-5 grid h-28 place-items-center overflow-hidden rounded-2xl text-4xl"
+          className="relative mb-5 grid h-28 place-items-center overflow-hidden rounded-2xl border border-hairline/20 text-4xl"
           style={{ background: project.accent }}
         >
           {project.cover ? (
@@ -98,7 +98,7 @@ export default function ProjectCard({
           {project.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-faint"
+              className="rounded-full border border-hairline/10 bg-hairline/5 px-3 py-1 text-xs text-faint"
             >
               {t}
             </span>

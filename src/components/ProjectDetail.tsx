@@ -51,7 +51,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
 
       {/* Cover — real image when `cover` is set, otherwise emoji + gradient */}
       <div
-        className="reveal relative mt-6 grid h-52 place-items-center overflow-hidden rounded-[2rem] text-7xl sm:h-64"
+        className="reveal relative mt-6 grid h-52 place-items-center overflow-hidden rounded-[2rem] border-2 border-white text-7xl sm:h-64"
         style={{ background: project.accent }}
       >
         {project.cover ? (
@@ -131,7 +131,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                       {/* Hover hint that the image is zoomable */}
                       <span
                         aria-hidden
-                        className="absolute inset-0 grid place-items-center bg-night/40 text-xl opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100"
+                        className="absolute inset-0 grid place-items-center bg-black/40 text-xl opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100"
                       >
                         🔍
                       </span>
@@ -195,7 +195,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
               {project.stack.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-mist"
+                  className="rounded-full border border-hairline/10 bg-hairline/5 px-3 py-1 text-xs text-mist"
                 >
                   {s}
                 </span>
@@ -232,17 +232,17 @@ export default function ProjectDetail({ slug }: { slug: string }) {
       </div>
 
       {/* Prev / next */}
-      <nav className="reveal mt-16 grid gap-4 border-t border-white/10 pt-8 sm:grid-cols-2">
+      <nav className="reveal mt-16 grid gap-4 border-t border-hairline/10 pt-8 sm:grid-cols-2">
         <a
           href={`#/project/${prev.slug}`}
-          className="glass group rounded-2xl p-5 transition-colors hover:bg-white/10"
+          className="glass group rounded-2xl p-5 transition-colors hover:bg-hairline/10"
         >
           <span className="text-xs text-faint">← Previous</span>
           <p className="mt-1 font-display text-lg text-ink">{prev.title}</p>
         </a>
         <a
           href={`#/project/${next.slug}`}
-          className="glass group rounded-2xl p-5 text-right transition-colors hover:bg-white/10"
+          className="glass group rounded-2xl p-5 text-right transition-colors hover:bg-hairline/10"
         >
           <span className="text-xs text-faint">Next →</span>
           <p className="mt-1 font-display text-lg text-ink">{next.title}</p>

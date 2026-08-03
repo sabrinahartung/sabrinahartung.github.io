@@ -14,6 +14,8 @@ export default {
         ink: "rgb(var(--ink) / <alpha-value>)", // headings / high contrast
         mist: "rgb(var(--mist) / <alpha-value>)", // body copy
         faint: "rgb(var(--faint) / <alpha-value>)", // muted / captions
+        // Subtle borders & fills — white in dark theme, dark ink in light
+        hairline: "rgb(var(--hairline) / <alpha-value>)",
       },
       fontFamily: {
         // Ubuntu for headlines, Poppins for body copy (loaded in index.html).

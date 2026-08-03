@@ -16,12 +16,12 @@ export default function Background() {
       <div className="absolute -right-32 top-1/4 h-[34rem] w-[34rem] animate-drift-slow rounded-full bg-azure/30 blur-[120px]" />
       <div className="absolute bottom-[-10rem] left-1/3 h-[30rem] w-[30rem] animate-drift rounded-full bg-orchid/25 blur-[120px]" />
 
-      {/* Faint grid */}
+      {/* Faint grid (line color follows the theme via --grid) */}
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(rgb(255 255 255 / 0.6) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.6) 1px, transparent 1px)",
+            "linear-gradient(rgb(var(--grid) / 0.6) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--grid) / 0.6) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           maskImage:
             "radial-gradient(ellipse at center, black 30%, transparent 75%)",

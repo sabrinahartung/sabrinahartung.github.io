@@ -5,10 +5,15 @@
 /* ============================================================
    Design tokens — re-skin the whole site from here.
    Colors are stored as raw "R G B" triples so Tailwind's
-   <alpha-value> syntax (e.g. bg-violet/20) works everywhere.
+   <alpha-value> syntax (e.g. bg-violet/20, border-hairline/10) works.
+
+   Two themes live here. The active one is chosen by the
+   `data-theme` attribute on <html> (set by the inline script in
+   index.html and toggled by <ThemeToggle />). Dark is the default.
    ============================================================ */
-:root {
-  --night: 13 10 31; /* #0d0a1f  deep purple-navy base */
+:root,
+:root[data-theme="dark"] {
+  --night: 13 10 31; /* #0d0a1f  deep purple-navy page base */
   --violet: 139 92 246; /* #8b5cf6  primary purple */
   --azure: 56 132 255; /* #3884ff  secondary blue */
   --orchid: 217 130 255; /* #d982ff  pink-purple highlight */
@@ -17,7 +22,39 @@
   --mist: 205 200 232; /* body copy */
   --faint: 150 144 184; /* muted captions */
 
+  /* Surfaces & lines — "hairline" is the subtle border/fill tint */
+  --hairline: 255 255 255; /* white, used at low alpha */
+  --grid: 255 255 255; /* background grid lines */
+  --surface: rgb(255 255 255 / 0.06); /* glass fill */
+  --surface-strong: rgb(255 255 255 / 0.09);
+  --surface-hover: rgb(255 255 255 / 0.12);
+  --border-glass: rgb(255 255 255 / 0.12);
+  --border-glass-strong: rgb(255 255 255 / 0.16);
+  --shadow-glass: 0 8px 32px 0 rgb(15 8 45 / 0.37);
+
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --night: 237 238 250; /* #edeefa  soft cool near-white */
+  --violet: 124 77 240; /* deeper so it reads on light */
+  --azure: 37 110 230;
+  --orchid: 155 70 220;
+
+  --ink: 26 22 52; /* dark headings */
+  --mist: 60 55 92; /* body copy */
+  --faint: 110 104 150; /* muted captions */
+
+  --hairline: 20 16 45; /* dark ink, used at low alpha */
+  --grid: 30 25 60;
+  --surface: rgb(255 255 255 / 0.7); /* frosted white card */
+  --surface-strong: rgb(255 255 255 / 0.82);
+  --surface-hover: rgb(255 255 255 / 0.95);
+  --border-glass: rgb(20 16 45 / 0.08);
+  --border-glass-strong: rgb(20 16 45 / 0.12);
+  --shadow-glass: 0 8px 32px 0 rgb(60 50 110 / 0.14);
+
+  color-scheme: light;
 }
 
 /* ---------- Base ---------- */
@@ -72,19 +109,19 @@ h4 {
 @layer components {
   /* Frosted-glass surface — the signature look */
   .glass {
-    background: rgb(255 255 255 / 0.06);
+    background: var(--surface);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgb(255 255 255 / 0.12);
-    box-shadow: theme("boxShadow.glass");
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
   }
 
   /* Slightly stronger glass for nav / floating chrome */
   .glass-strong {
-    background: rgb(255 255 255 / 0.09);
+    background: var(--surface-strong);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgb(255 255 255 / 0.16);
+    border: 1px solid var(--border-glass-strong);
   }
 
   /* Gradient headline text with a slow shimmer */
@@ -119,11 +156,11 @@ h4 {
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
       font-body font-medium text-ink transition-all duration-300;
-    background: rgb(255 255 255 / 0.06);
-    border: 1px solid rgb(255 255 255 / 0.16);
+    background: var(--surface);
+    border: 1px solid var(--border-glass-strong);
   }
   .btn-ghost:hover {
-    background: rgb(255 255 255 / 0.12);
+    background: var(--surface-hover);
     transform: translateY(-2px);
   }
 }

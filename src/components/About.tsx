@@ -52,7 +52,7 @@ export default function About() {
             {skills.map((s) => (
               <span
                 key={s}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-mist transition-colors hover:border-white/25 hover:text-ink"
+                className="rounded-full border border-hairline/10 bg-hairline/5 px-4 py-2 text-sm text-mist transition-colors hover:border-hairline/25 hover:text-ink"
               >
                 {s}
               </span>

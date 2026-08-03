@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "#projects", label: "Projects" },
@@ -35,39 +36,45 @@ export default function Navbar() {
           Portfolio
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-mist no-underline transition-colors hover:bg-white/10 hover:text-ink"
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-lg text-ink transition-colors hover:bg-white/10 md:hidden"
-        >
-          <div className="space-y-1.5">
-            <span
-              className={`block h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-current transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
-            />
+        {/* Right side: links (desktop) + theme toggle + mobile menu button */}
+        <div className="flex items-center gap-1">
+          {/* Desktop links */}
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="rounded-full px-4 py-2 text-sm font-medium text-mist no-underline transition-colors hover:bg-hairline/10 hover:text-ink"
+              >
+                {l.label}
+              </a>
+            ))}
           </div>
-        </button>
+
+          {/* Light / dark toggle (always visible) */}
+          <ThemeToggle />
+
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-10 w-10 place-items-center rounded-lg text-ink transition-colors hover:bg-hairline/10 md:hidden"
+          >
+            <div className="space-y-1.5">
+              <span
+                className={`block h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
+              />
+              <span
+                className={`block h-0.5 w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block h-0.5 w-5 bg-current transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
+              />
+            </div>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -78,7 +85,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block rounded-xl px-4 py-3 text-mist no-underline transition-colors hover:bg-white/10 hover:text-ink"
+              className="block rounded-xl px-4 py-3 text-mist no-underline transition-colors hover:bg-hairline/10 hover:text-ink"
             >
               {l.label}
             </a>

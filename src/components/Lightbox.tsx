@@ -57,7 +57,7 @@ export default function Lightbox({
       aria-modal="true"
       aria-label={current.caption || "Image viewer"}
       onClick={onClose}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-night/80 p-4 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-black/80 p-4 backdrop-blur-xl"
     >
       {/* Close */}
       <button
@@ -95,10 +95,10 @@ export default function Lightbox({
           alt={current.caption}
           className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain shadow-glass"
         />
-        <figcaption className="flex items-center gap-3 text-sm text-mist">
+        <figcaption className="flex max-w-2xl items-center gap-3 text-sm text-white/85">
           <span>{current.caption}</span>
           {many && (
-            <span className="text-faint">
+            <span className="flex-none text-white/50">
               {index + 1} / {images.length}
             </span>
           )}
