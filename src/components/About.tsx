@@ -1,14 +1,12 @@
 import { useReveal } from "../hooks/useReveal";
 
 const skills = [
-  "React",
+  "Python",
+  "PyTorch",
   "TypeScript",
-  "Node.js",
-  "Tailwind CSS",
-  "Vite",
-  "UI/UX",
-  "WebGL",
-  "Design Systems",
+  "SAP BTP",
+  "Docker/Kubernetes",
+  "RAG/MCP",
 ];
 
 export default function About() {
@@ -26,22 +24,24 @@ export default function About() {
             About
           </p>
           <h2 className="reveal font-display text-4xl font-bold sm:text-5xl">
-            Hi, I'm the person behind these projects
+            Hi, I'm Sabrina
           </h2>
           <p
             className="reveal mt-5 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "80ms" }}
           >
-            I design and build digital products that feel fast, clear and a
-            little bit magical. I love working at the intersection of design and
-            engineering — where a good idea meets clean code.
+            I'm a software developer and computer scientist with a passion for
+            machine learning that delivers real-world benefits. After conducting
+            research on responsible AI in the medical field, I'm now working on
+            cloud-native AI systems in the SAP environment and want to shift my
+            focus back toward modeling.
           </p>
           <p
             className="reveal mt-4 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "160ms" }}
           >
-            When I'm not coding, you'll find me sketching interfaces, trying out
-            new tools, or enjoying a very good cup of coffee.
+            When I'm not working on machine learning pipelines, you'll find me
+            drawing pixel art or tinkering with small gameplay ideas.
           </p>
 
           {/* Skills */}

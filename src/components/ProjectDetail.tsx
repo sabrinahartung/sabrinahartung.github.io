@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { getProject, projects } from "../data/projects";
 import { useReveal } from "../hooks/useReveal";
+import { asset } from "../lib/asset";
+import Lightbox from "./Lightbox";
 
 /**
  * Project detail page, rendered when the route is `#/project/<slug>`.
@@ -7,6 +10,9 @@ import { useReveal } from "../hooks/useReveal";
  */
 export default function ProjectDetail({ slug }: { slug: string }) {
   const ref = useReveal<HTMLDivElement>();
+  // Which gallery image the lightbox shows (null = closed). Declared before
+  // the early return below so the hook order stays stable.
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const project = getProject(slug);
 
   if (!project) {
@@ -28,6 +34,11 @@ export default function ProjectDetail({ slug }: { slug: string }) {
   const prev = projects[(idx - 1 + projects.length) % projects.length];
   const next = projects[(idx + 1) % projects.length];
 
+  // Only real images are enlargeable; the lightbox navigates among these.
+  const galleryImages = project.gallery.filter(
+    (g): g is { image: string; caption: string } => Boolean(g.image),
+  );
+
   return (
     <main ref={ref} className="mx-auto max-w-5xl px-4 pb-24 pt-28">
       {/* Back link */}
@@ -38,12 +49,20 @@ export default function ProjectDetail({ slug }: { slug: string }) {
         <span aria-hidden>←</span> Back to projects
       </a>
 
-      {/* Cover */}
+      {/* Cover — real image when `cover` is set, otherwise emoji + gradient */}
       <div
         className="reveal relative mt-6 grid h-52 place-items-center overflow-hidden rounded-[2rem] text-7xl sm:h-64"
         style={{ background: project.accent }}
       >
-        <span className="drop-shadow-md">{project.emoji}</span>
+        {project.cover ? (
+          <img
+            src={asset(project.cover)}
+            alt={project.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span className="drop-shadow-md">{project.emoji}</span>
+        )}
         {project.badge && (
           <span className="absolute right-5 top-5 rounded-full bg-black/30 px-3 py-1.5 text-sm font-medium text-white backdrop-blur">
             {project.badge}
@@ -95,20 +114,65 @@ export default function ProjectDetail({ slug }: { slug: string }) {
           {/* Gallery placeholders */}
           <h2 className="mt-10 font-display text-2xl font-medium">Gallery</h2>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {project.gallery.map((g) => (
-              <figure key={g.caption} className="glass rounded-2xl p-3">
+            {project.gallery.map((g) => {
+              const tile = (
                 <div
-                  className="grid h-24 place-items-center rounded-xl text-3xl"
-                  style={{ background: project.accent, opacity: 0.9 }}
+                  className="relative grid h-24 place-items-center overflow-hidden rounded-xl text-3xl"
+                  style={{ background: project.accent }}
                 >
-                  {g.emoji}
+                  {g.image ? (
+                    <>
+                      <img
+                        src={asset(g.image)}
+                        alt={g.caption}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      {/* Hover hint that the image is zoomable */}
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 grid place-items-center bg-night/40 text-xl opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100"
+                      >
+                        🔍
+                      </span>
+                    </>
+                  ) : (
+                    <span>{g.emoji}</span>
+                  )}
                 </div>
-                <figcaption className="mt-2 px-1 text-center text-xs text-faint">
-                  {g.caption}
-                </figcaption>
-              </figure>
-            ))}
+              );
+
+              return (
+                <figure key={g.caption} className="glass rounded-2xl p-3">
+                  {g.image ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightboxIndex(
+                          galleryImages.findIndex(
+                            (x) => x.caption === g.caption,
+                          ),
+                        )
+                      }
+                      aria-label={`Enlarge image: ${g.caption}`}
+                      className="group/thumb block w-full cursor-zoom-in rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orchid/70"
+                    >
+                      {tile}
+                    </button>
+                  ) : (
+                    tile
+                  )}
+                  <figcaption className="mt-2 px-1 text-center text-xs text-faint">
+                    {g.caption}
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
+          <div className="mt-4"> <p>
+            {project.footnotes}
+            </p>
+            </div>
         </div>
 
         {/* Sidebar */}
@@ -139,7 +203,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {(project.links.demo || project.links.code) && (
+            {(project.links.demo || project.links.link) && (
               <div className="mt-6 flex flex-col gap-3">
                 {project.links.demo && (
                   <a
@@ -151,14 +215,15 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                     Live demo <span aria-hidden>↗</span>
                   </a>
                 )}
-                {project.links.code && (
+                {project.links.link && (
                   <a
-                    href={project.links.code}
-                    target="_blank"
+                    href={project.links.link}
+                    target="_blank" 
                     rel="noreferrer"
                     className="btn-ghost w-full text-sm"
                   >
-                    Source code <span aria-hidden>↗</span>
+                    {project.links.description}
+                    <span aria-hidden>↗</span>
                   </a>
                 )}
               </div>
@@ -184,6 +249,14 @@ export default function ProjectDetail({ slug }: { slug: string }) {
           <p className="mt-1 font-display text-lg text-ink">{next.title}</p>
         </a>
       </nav>
+
+      {/* Click-to-enlarge gallery viewer */}
+      <Lightbox
+        images={galleryImages}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onNavigate={setLightboxIndex}
+      />
     </main>
   );
 }

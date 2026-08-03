@@ -6,23 +6,22 @@ export default function Hero() {
     >
       <div className="mx-auto max-w-3xl text-center">
         {/* Eyebrow pill */}
-        <div className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-mist">
+        {/* <div className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-mist">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orchid opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-orchid" />
           </span>
-          Available for new projects
-        </div>
+          Machine learning · Responsible AI
+        </div> */}
 
         {/* Headline */}
         <h1
-          className="animate-rise-in font-display text-5xl font-bold leading-[1.05] sm:text-6xl md:text-7xl"
+          className="animate-rise-in font-display text-4xl font-bold leading-[1.1] sm:text-5xl md:text-6xl"
           style={{ animationDelay: "80ms" }}
         >
-          Building things
-          <br />
-          that{" "}
-          <span className="text-gradient animate-shimmer">sparkle</span>.
+          I love building machine learning systems that work{" "}
+          <span className="text-gradient animate-shimmer">responsibly</span> in
+          the real world.
         </h1>
 
         {/* Subline */}
@@ -30,8 +29,8 @@ export default function Hero() {
           className="animate-rise-in mx-auto mt-6 max-w-xl text-lg text-mist"
           style={{ animationDelay: "160ms" }}
         >
-          A small selection of projects I've enjoyed working on — from web apps
-          and games to tools for developers.
+          A selection of projects across responsible AI, medical machine
+          learning and cloud-native data systems.
         </p>
 
         {/* CTAs */}
@@ -50,13 +49,14 @@ export default function Hero() {
 
         {/* Stats strip */}
         <div
-          className="animate-rise-in mx-auto mt-14 grid max-w-lg grid-cols-3 gap-4"
+          className="animate-rise-in mx-auto mt-14 grid max-w-lg grid-cols-4 gap-4"
           style={{ animationDelay: "320ms" }}
         >
           {[
-            { n: "20+", l: "Projects" },
-            { n: "6", l: "Years" },
-            { n: "∞", l: "Coffee" },
+            { n: "6", l: "Years of Experience in Data Science and AI" },
+            { n: "5+", l: "Years of Experience in Software Development" },
+            { n: "6", l: "Published Scientific Papers on Responsible AI" },
+            { n: "∞", l: "Curiosity for new Technologies" },
           ].map((s) => (
             <div key={s.l} className="glass rounded-2xl px-4 py-5">
               <div className="font-display text-3xl font-bold text-ink">

@@ -20,11 +20,10 @@ export default function Contact() {
             Contact
           </p>
           <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            Let's build something
+            I am open to work
           </h2>
           <p className="mx-auto mt-4 max-w-md text-lg text-mist">
-            Whether it's a project idea, a collaboration, or just a hello — I'd
-            love to hear from you.
+            I love to hear from you!
           </p>
 
           <a

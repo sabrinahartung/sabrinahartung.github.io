@@ -48,8 +48,18 @@ page; the grid tile uses `title`, `tagline`, `description`, `tags`, `emoji`,
 `accent` and the optional `badge`. Add or remove entries and both the grid and
 the detail routes update automatically.
 
-The `gallery` items are emoji placeholders — swap them for real screenshots
-whenever you're ready.
+### Project images
+
+Every project can use **real images** instead of the emoji placeholders:
+
+- `cover` — a card + detail hero image
+- `gallery[].image` — real screenshots in the detail gallery
+
+Drop the files into `public/projects/…` and reference them by a path relative
+to `public/` (e.g. `cover: "projects/verifai/cover.png"`). If `cover` is
+omitted the emoji + gradient is used, and each gallery item falls back to its
+`emoji` when it has no `image`. See `public/projects/README.md` for details and
+sizing tips.
 
 ### Recoloring
 

@@ -30,9 +30,9 @@ export default function Navbar() {
           className="flex items-center gap-2 font-display text-lg font-bold text-ink no-underline"
         >
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-gradient text-sm shadow-glow-violet">
-            ✦
+            SH
           </span>
-          Showcase
+          Portfolio
         </a>
 
         {/* Desktop links */}
@@ -46,9 +46,6 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn-primary ml-2 !px-5 !py-2 text-sm">
-            Say hi
-          </a>
         </div>
 
         {/* Mobile toggle */}

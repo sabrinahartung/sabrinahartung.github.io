@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { Project } from "../data/projects";
+import { asset } from "../lib/asset";
 
 /**
  * A single frosted-glass project tile. The whole card is a link to the
@@ -59,12 +60,21 @@ export default function ProjectCard({
           }}
         />
 
-        {/* Cover */}
+        {/* Cover — real image when `cover` is set, otherwise emoji + gradient */}
         <div
           className="relative mb-5 grid h-28 place-items-center overflow-hidden rounded-2xl text-4xl"
           style={{ background: project.accent }}
         >
-          <span className="drop-shadow-sm">{project.emoji}</span>
+          {project.cover ? (
+            <img
+              src={asset(project.cover)}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <span className="drop-shadow-sm">{project.emoji}</span>
+          )}
           {project.badge && (
             <span className="absolute right-3 top-3 rounded-full bg-black/30 px-2.5 py-1 text-xs font-medium text-white backdrop-blur">
               {project.badge}
