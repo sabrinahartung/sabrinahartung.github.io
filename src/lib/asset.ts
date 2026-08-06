@@ -11,3 +11,8 @@
 export function asset(path: string): string {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 }
+
+/** True when a media path points at a video (rendered as a looping <video>). */
+export function isVideo(path: string): boolean {
+  return /\.(mp4|webm|mov|m4v|ogv)$/i.test(path);
+}

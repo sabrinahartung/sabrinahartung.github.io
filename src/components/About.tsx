@@ -64,9 +64,9 @@ export default function About() {
         <div className="reveal" style={{ transitionDelay: "160ms" }}>
           <div className="glass relative mx-auto grid aspect-square max-w-sm place-items-center overflow-hidden rounded-[2rem] p-6">
             <div className="absolute inset-0 bg-brand-gradient opacity-20" />
-            <div className="animate-float text-8xl">👋</div>
+            <div className="animate-float text-8xl">👩🏼‍💻</div>
             <div className="glass-strong absolute bottom-5 left-5 right-5 rounded-2xl px-4 py-3 text-center text-sm text-mist">
-              “Details aren't a detail — they are the design.”
+              “If you love what you do, you'll never have to work a day in your life.”
             </div>
           </div>
         </div>

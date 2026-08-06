@@ -19,9 +19,8 @@ export default function Hero() {
           className="animate-rise-in font-display text-4xl font-bold leading-[1.1] sm:text-5xl md:text-6xl"
           style={{ animationDelay: "80ms" }}
         >
-          I love building machine learning systems that work{" "}
-          <span className="text-gradient animate-shimmer">responsibly</span> in
-          the real world.
+          <span className="text-gradient animate-shimmer">Responsible AI</span>{" "}
+          from research to real world.
         </h1>
 
         {/* Subline */}
@@ -29,8 +28,7 @@ export default function Hero() {
           className="animate-rise-in mx-auto mt-6 max-w-xl text-lg text-mist"
           style={{ animationDelay: "160ms" }}
         >
-          A selection of projects across responsible AI, medical machine
-          learning and cloud-native data systems.
+           
         </p>
 
         {/* CTAs */}
@@ -55,7 +53,7 @@ export default function Hero() {
           {[
             { n: "6", l: "Years of Experience in Data Science and AI" },
             { n: "5+", l: "Years of Experience in Software Development" },
-            { n: "6", l: "Published Scientific Papers on Responsible AI" },
+            { n: "7", l: "Published Scientific Papers on Responsible AI" },
             { n: "∞", l: "Curiosity for new Technologies" },
           ].map((s) => (
             <div key={s.l} className="glass rounded-2xl px-4 py-5">

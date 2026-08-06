@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { asset } from "../lib/asset";
+import { asset, isVideo } from "../lib/asset";
 
 export type LightboxImage = { image?: string; caption: string };
 
@@ -90,11 +90,23 @@ export default function Lightbox({
         onClick={(e) => e.stopPropagation()}
         className="animate-rise-in flex max-h-full max-w-full flex-col items-center gap-3"
       >
-        <img
-          src={asset(current.image!)}
-          alt={current.caption}
-          className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain shadow-glass"
-        />
+        {isVideo(current.image!) ? (
+          <video
+            src={asset(current.image!)}
+            controls
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain shadow-glass"
+          />
+        ) : (
+          <img
+            src={asset(current.image!)}
+            alt={current.caption}
+            className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain shadow-glass"
+          />
+        )}
         <figcaption className="flex max-w-2xl items-center gap-3 text-sm text-white/85">
           <span>{current.caption}</span>
           {many && (

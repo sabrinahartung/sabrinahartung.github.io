@@ -7,7 +7,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative px-4 py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-4xl">
+      <div ref={ref} className="mx-auto max-w-5xl">
         {/* Heading */}
         <div className="mb-14 max-w-2xl">
           <p className="reveal mb-3 font-body text-sm font-medium uppercase tracking-[0.2em] text-orchid">
@@ -26,7 +26,7 @@ export default function Projects() {
         </div>
 
         {/* Grid — two rows of two */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {projects.map((p, i) => (
             <ProjectCard key={p.slug} project={p} index={i} />
           ))}

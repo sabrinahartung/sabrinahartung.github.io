@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { getProject, projects } from "../data/projects";
 import { useReveal } from "../hooks/useReveal";
-import { asset } from "../lib/asset";
+import { asset, isVideo } from "../lib/asset";
 import Lightbox from "./Lightbox";
+import MetricsTree from "./MetricsTree";
 
 /**
  * Project detail page, rendered when the route is `#/project/<slug>`.
@@ -111,6 +112,9 @@ export default function ProjectDetail({ slug }: { slug: string }) {
             ))}
           </ul>
 
+          {/* Interactive metrics-coverage tree (only if provided) */}
+          {project.metrics && <MetricsTree nodes={project.metrics} />}
+
           {/* Gallery placeholders */}
           <h2 className="mt-10 font-display text-2xl font-medium">Gallery</h2>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -122,13 +126,24 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                 >
                   {g.image ? (
                     <>
-                      <img
-                        src={asset(g.image)}
-                        alt={g.caption}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover"
-                      />
-                      {/* Hover hint that the image is zoomable */}
+                      {isVideo(g.image) ? (
+                        <video
+                          src={asset(g.image)}
+                          muted
+                          loop
+                          autoPlay
+                          playsInline
+                          className="absolute inset-0 h-full w-full object-cover"
+                        />
+                      ) : (
+                        <img
+                          src={asset(g.image)}
+                          alt={g.caption}
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-cover"
+                        />
+                      )}
+                      {/* Hover hint that the media is zoomable */}
                       <span
                         aria-hidden
                         className="absolute inset-0 grid place-items-center bg-black/40 text-xl opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100"
