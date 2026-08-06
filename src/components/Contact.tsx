@@ -1,9 +1,11 @@
 import { useReveal } from "../hooks/useReveal";
+import { asset } from "../lib/asset";
 
+// 👉 Set your real contact details here.
+const EMAIL = "sabrinahartung.application@proton.me";
 const socials = [
-  { label: "Email", href: "mailto:hello@example.com", icon: "✉️" },
-  { label: "GitHub", href: "#", icon: "🐙" },
-  { label: "LinkedIn", href: "#", icon: "💼" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/sabrina-hartung-255056110/", icon: "💼" },
+  { label: "GitHub", href: "https://github.com/sabrinahartung", icon: "🐙" },
 ];
 
 export default function Contact() {
@@ -17,29 +19,33 @@ export default function Contact() {
           <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-brand-gradient opacity-30 blur-3xl" />
 
           <p className="mb-3 font-body text-sm font-medium uppercase tracking-[0.2em] text-orchid">
-            Contact
+            Open to opportunities
           </p>
           <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            I am open to work
+            Looking for my next role
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-lg text-mist">
-            I love to hear from you!
+          <p className="mx-auto mt-4 max-w-lg text-lg text-mist">
+            I'm open to AI / ML Engineer roles and research-driven teams building
+            responsible, real-world AI. If you're hiring or think I'd be a good
+            fit I'd love to hear from you.
           </p>
 
-          <a
-            href="mailto:hello@example.com"
-            className="btn-primary mt-8 text-base"
-          >
-            Send a message
-            <span aria-hidden>→</span>
-          </a>
+          {/* Primary actions */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href={`mailto:${EMAIL}`} className="btn-primary text-base">
+              Email me
+              <span aria-hidden>→</span>
+            </a>
+          </div>
 
           {/* Socials */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
+                target="_blank"
+                rel="noreferrer"
                 className="btn-ghost !px-5 !py-2.5 text-sm"
               >
                 <span aria-hidden>{s.icon}</span>

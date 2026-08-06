@@ -2,11 +2,21 @@ import { useReveal } from "../hooks/useReveal";
 
 const skills = [
   "Python",
+  "Pandas",
   "PyTorch",
+  "HuggingFace",
+  "RAG",
+  "MCP",
+  "LangChain",
   "TypeScript",
+  "FastAPI",
+  "Django",
+  "Open API",
+  "Docker",
+  "React",
   "SAP BTP",
-  "Docker/Kubernetes",
-  "RAG/MCP",
+  "Docker",
+  "Kubernetes"
 ];
 
 export default function About() {
@@ -40,7 +50,7 @@ export default function About() {
             className="reveal mt-4 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "160ms" }}
           >
-            When I'm not working on machine learning pipelines, you'll find me
+            When I'm not working on machine learning stuff, you'll find me
             drawing pixel art or tinkering with small gameplay ideas.
           </p>
 
