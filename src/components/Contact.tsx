@@ -1,5 +1,4 @@
 import { useReveal } from "../hooks/useReveal";
-import { asset } from "../lib/asset";
 
 // 👉 Set your real contact details here.
 const EMAIL = "sabrinahartung.application@proton.me";

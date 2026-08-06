@@ -1,22 +1,13 @@
 import { useReveal } from "../hooks/useReveal";
 
-const skills = [
-  "Python",
-  "Pandas",
-  "PyTorch",
-  "HuggingFace",
-  "RAG",
-  "MCP",
-  "LangChain",
-  "TypeScript",
-  "FastAPI",
-  "Django",
-  "Open API",
-  "Docker",
-  "React",
-  "SAP BTP",
-  "Docker",
-  "Kubernetes"
+const skillGroups = [
+  {
+    label: "AI / ML",
+    items: ["Python", "PyTorch", "Hugging Face", "LangChain", "RAG", "MCP", "Pandas"],
+  },
+  { label: "Backend & APIs", items: ["FastAPI", "Django", "OpenAPI"] },
+  { label: "Frontend", items: ["React", "TypeScript"] },
+  { label: "Cloud & DevOps", items: ["Docker", "Kubernetes", "SAP BTP"] },
 ];
 
 export default function About() {
@@ -51,21 +42,38 @@ export default function About() {
             style={{ transitionDelay: "160ms" }}
           >
             When I'm not working on machine learning stuff, you'll find me
-            drawing pixel art or tinkering with small gameplay ideas.
+            drawing pixel art or playing Pen&Paper with friends.
           </p>
 
-          {/* Skills */}
-          <div
-            className="reveal mt-8 flex flex-wrap gap-2.5"
-            style={{ transitionDelay: "240ms" }}
+          {/* Skills — grouped, with a generalist framing line */}
+          <p
+            className="reveal mt-8 text-sm text-mist"
+            style={{ transitionDelay: "220ms" }}
           >
-            {skills.map((s) => (
-              <span
-                key={s}
-                className="rounded-full border border-hairline/10 bg-hairline/5 px-4 py-2 text-sm text-mist transition-colors hover:border-hairline/25 hover:text-ink"
+          </p>
+          <div
+            className="reveal mt-4 space-y-4"
+            style={{ transitionDelay: "260ms" }}
+          >
+            {skillGroups.map((g) => (
+              <div
+                key={g.label}
+                className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4"
               >
-                {s}
-              </span>
+                <span className="flex-none pt-1.5 text-xs font-medium uppercase tracking-wider text-faint sm:w-32">
+                  {g.label}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {g.items.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-hairline/10 bg-hairline/5 px-3.5 py-1.5 text-sm text-mist transition-colors hover:border-hairline/25 hover:text-ink"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
