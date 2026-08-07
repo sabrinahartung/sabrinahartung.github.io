@@ -31,18 +31,13 @@ export default function About() {
             className="reveal mt-5 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "80ms" }}
           >
-            I'm a software developer and computer scientist with a passion for
-            machine learning that delivers real-world benefits. After conducting
-            research on responsible AI in the medical field, I'm now working on
-            cloud-native AI systems in the SAP environment and want to shift my
-            focus back toward modeling.
+            I am a computer scientist with a wide range of experience, from data science in research to agentic AI in enterprise environments, and I am passionate about the practical application of machine learning for real-world use cases.
           </p>
           <p
             className="reveal mt-4 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "160ms" }}
           >
-            When I'm not working on machine learning stuff, you'll find me
-            drawing pixel art or playing Pen&Paper with friends.
+           
           </p>
 
           {/* Skills — grouped, with a generalist framing line */}
