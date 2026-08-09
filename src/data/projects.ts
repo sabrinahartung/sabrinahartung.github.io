@@ -75,7 +75,7 @@ export const projects: Project[] = [
     title: "VERIFAI",
     tagline: "Stress-testing ML models for responsible AI",
     description:
-      "A framework to evaluate models across text, image, tabular data and large language models — probing where they can be trusted and where they fail before they reach the real world.",
+      "A framework to evaluate models across text, image, tabular data and large language models, probing where they can be trusted and where they fail before they reach the real world.",
     tags: ["Responsible AI", "LLMs", "Python", "Hugging Face"],
     emoji: "🔍",
     accent: "linear-gradient(135deg, #8b5cf6, #3884ff)",
@@ -83,16 +83,16 @@ export const projects: Project[] = [
     year: "2020-2026",
     role: "Research & Development",
     overview: [
-      "VERIFAI is a prototype tool from my master's research for stress-testing pretrained machine learning models across text, image and tabular classification tasks. It brings model behaviour, robustness and explainability into one place, so teams can see where a model can be trusted — and where it can't.",
+      "VERIFAI is a prototype tool from my master's research for stress-testing pretrained machine learning models across text, image and tabular classification tasks. It brings model behaviour, robustness and explainability into one place, so teams can see where a model can be trusted, and where it can't.",
       "The use cases were deliberately high-stakes: skin-cancer images, medical reviews and heart-disease records. When a model might inform a medical decision, understanding its failure modes matters as much as its raw accuracy.",
-      "A second, larger repository — the VERIFAI Test Lab — grew that prototype into a full evaluation platform (FastAPI backend, React frontend, Dockerised for CPU or GPU). Its biggest addition is support for large language models: they can be called through the Hugging Face Inference API or loaded locally with Transformers, then probed with the same responsible-AI lens — bias and toxicity, privacy (membership-inference), robustness and explainability.",
+      "A second, larger repository, the VERIFAI Test Lab, grew that prototype into a full evaluation platform (FastAPI backend, React frontend, Dockerised for CPU or GPU). Its biggest addition is support for large language models: they can be called through the Hugging Face Inference API or loaded locally with Transformers, then probed with the same responsible-AI lens, namely bias and toxicity, privacy (membership-inference), robustness and explainability.",
     ],
     highlights: [
       "Evaluates image, NLP and tabular models (Xception, DistilBERT, Random Forest) in one workflow",
       "Centred on responsible AI: robustness, explainability and failure analysis",
       "Built around real, high-stakes datasets (skin cancer, medical text, heart disease)",
       "Foundation for my thesis on responsible AI in the medical field",
-      "Extended into the VERIFAI Test Lab — a FastAPI + React platform, Dockerised for CPU/GPU with live evaluation runs over WebSockets",
+      "Extended into the VERIFAI Test Lab , a FastAPI + React platform, Dockerised for CPU/GPU with live evaluation runs over WebSockets",
       "Adds large-language-model support, either via the Hugging Face Inference API or loaded locally with Transformers (PyTorch)",
       "Responsible-AI metrics for generative NLP: bias & toxicity, membership-inference (privacy), robustness and explainability",
     ],
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     ],
     metrics: [
       {
-        name: "Prototype — classification models",
+        name: "Prototype: classification models",
         description:
           "Image, text & tabular classifiers (skin cancer, medical reviews, heart disease).",
         color: "#8b5cf6",
@@ -199,7 +199,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        name: "Extension — generative LLMs",
+        name: "Extension: generative LLMs",
         description:
           "Large language models via the Hugging Face API or local Transformers.",
         color: "#3884ff",
@@ -238,16 +238,16 @@ export const projects: Project[] = [
               {
                 name: "BLEU",
                 description:
-                  "n-gram overlap with a reference — generation / translation quality.",
+                  "n-gram overlap with a reference generation / translation quality.",
               },
               {
                 name: "ROUGE",
-                description: "Recall-oriented overlap — summarisation quality.",
+                description: "Recall-oriented overlap summarisation quality.",
               },
               {
                 name: "Perplexity",
                 description:
-                  "How confidently the model predicts text — a proxy for fluency.",
+                  "How confidently the model predicts text, a proxy for fluency.",
               },
             ],
           },
@@ -323,7 +323,7 @@ export const projects: Project[] = [
     title: "HAM10000 Skin Lesion Classifier",
     tagline: "Dermatoscopic skin-lesion classification in the browser",
     description:
-      "A deep-learning web app that sorts dermatoscopic images into the seven HAM10000 lesion types — melanoma, carcinomas, benign moles and more — with a full per-class probability breakdown.",
+      "A deep-learning web app that sorts dermatoscopic images into the seven HAM10000 lesion types: melanoma, carcinomas, benign moles and more with a full per-class probability breakdown.",
     tags: ["Computer Vision", "Deep Learning", "Streamlit", "Python"],
     emoji: "🔬",
     accent: "linear-gradient(135deg, #34d399, #22d3ee)",
@@ -331,9 +331,9 @@ export const projects: Project[] = [
     year: "2026",
     role: "ML / Computer Vision",
     overview: [
-      "An interactive web app that classifies dermatoscopic skin-lesion images into the seven diagnostic categories of the HAM10000 dataset — from melanoma and basal-cell carcinoma to benign keratoses and moles. Upload an image (or pick one of the built-in examples) and the model returns its top prediction, a confidence score and the full probability distribution across every class.",
-      "The interesting challenge is the data itself: HAM10000 is heavily imbalanced — benign nevi dominate while melanoma is comparatively rare — so the work focused as much on honest evaluation as on headline accuracy. A ResNet, fine-tuned with transfer learning, does the classification, and the app deliberately surfaces the model's uncertainty instead of hiding it behind a single label.",
-      "It's deployed as a Streamlit app, so anyone can try it live in the browser — no setup required, and the full model-training code is open-sourced on GitHub.",
+      "An interactive web app that classifies dermatoscopic skin-lesion images into the seven diagnostic categories of the HAM10000 dataset from melanoma and basal-cell carcinoma to benign keratoses and moles. Upload an image (or pick one of the built-in examples) and the model returns its top prediction, a confidence score and the full probability distribution across every class.",
+      "The interesting challenge is the data itself: HAM10000 is heavily imbalanced, benign nevi dominate while melanoma is comparatively rare, so the work focused as much on honest evaluation as on headline accuracy. A ResNet, fine-tuned with transfer learning, does the classification, and the app deliberately surfaces the model's uncertainty instead of hiding it behind a single label.",
+      "It's deployed as a Streamlit app, so anyone can try it live in the browser, no setup required, and the full model-training code is open-sourced on GitHub.",
     ],
     highlights: [
       "Classifies dermatoscopic images into the 7 HAM10000 lesion classes (incl. melanoma, BCC, benign keratoses, nevi)",
@@ -353,7 +353,7 @@ export const projects: Project[] = [
       description: "Source code (training)",
     },
     footnotes:
-      "Research / portfolio project — not a medical device and not intended for diagnostic use.",
+      "This is a Research / portfolio project, not a medical device and not intended for diagnostic use.",
   },
   {
     slug: "samson",
@@ -369,7 +369,7 @@ export const projects: Project[] = [
     role: "Full-stack & Data",
     overview: [
       "Samson is a modular platform for managing farm data, built as a set of Docker services. A Django + PostGIS backend serves the API, while an MQTT client pulls sensor readings from The Things Network and stores them for analysis.",
-      "On top of the data sits a React dashboard that turns raw sensor streams into ML-based statistics and farm-management tools — a full path from field sensor to actionable insight.",
+      "On top of the data sits a React dashboard that turns raw sensor streams into ML-based statistics and farm-management tools, a full path from field sensor to actionable insight.",
     ],
     highlights: [
       "Containerised microservices: Django/PostGIS API, PostgreSQL, MQTT client, CouchDB",
