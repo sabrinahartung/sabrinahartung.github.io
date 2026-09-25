@@ -90,14 +90,24 @@ function TreeNode({
  * individual leaf metrics, with connector lines and per-branch counts.
  * Data-driven via a recursive `MetricNode[]` forest.
  */
-export default function MetricsTree({ nodes }: { nodes: MetricNode[] }) {
+export default function MetricsTree({
+  nodes,
+  title = "Metrics coverage",
+  unit = "metrics",
+}: {
+  nodes: MetricNode[];
+  title?: string;
+  unit?: string;
+}) {
   const total = nodes.reduce((n, c) => n + countLeaves(c), 0);
 
   return (
-    <section aria-label="Metrics coverage" className="mt-10">
-      <h2 className="font-display text-2xl font-medium">Metrics coverage</h2>
+    <section aria-label={title} className="mt-10">
+      <h2 className="font-display text-2xl font-medium">{title}</h2>
       <p className="mt-1 text-sm text-faint">
-        {total} metrics across {nodes.length} branches — tap a branch to expand.
+        {nodes.some((n) => n.children?.length)
+          ? `${total} ${unit} across ${nodes.length} branches — tap a branch to expand.`
+          : `${total} ${unit}`}
       </p>
 
       <div className="glass mt-4 rounded-2xl p-5">

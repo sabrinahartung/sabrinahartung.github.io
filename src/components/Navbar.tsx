@@ -33,7 +33,7 @@ export default function Navbar() {
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-gradient text-sm shadow-glow-violet">
             SH
           </span>
-          Portfolio
+          Sabrina Hartung
         </a>
 
         {/* Right side: links (desktop) + theme toggle + mobile menu button */}

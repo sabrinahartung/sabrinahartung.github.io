@@ -14,19 +14,20 @@ export default function Projects() {
             Selected work
           </p>
           <h2 className="reveal font-display text-4xl font-bold sm:text-5xl">
-            Projects Showcase
+            Work samples
           </h2>
           <p
             className="reveal mt-4 text-lg text-mist"
             style={{ transitionDelay: "80ms" }}
           >
-            Each project here showcases a piece of work I did for my past jobs in data science or engineering and. Click a tile to
-            dive in.
+            From an LLM agent I'm building right now to research prototypes
+            and production platforms. Each one shows how I build, and how I
+            check that it works. Click a tile to dive in.
           </p>
         </div>
 
         {/* Grid — two rows of two */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {projects.map((p, i) => (
             <ProjectCard key={p.slug} project={p} index={i} />
           ))}

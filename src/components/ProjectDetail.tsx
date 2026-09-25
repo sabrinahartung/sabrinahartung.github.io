@@ -113,12 +113,18 @@ export default function ProjectDetail({ slug }: { slug: string }) {
           </ul>
 
           {/* Interactive metrics-coverage tree (only if provided) */}
-          {project.metrics && <MetricsTree nodes={project.metrics} />}
+          {project.metrics && (
+            <MetricsTree
+              nodes={project.metrics}
+              title={project.metricsTitle}
+              unit={project.metricsUnit}
+            />
+          )}
 
           {/* Gallery placeholders */}
           <h2 className="mt-10 font-display text-2xl font-medium">Gallery</h2>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {project.gallery.map((g) => {
+            {project.gallery.map((g, i) => {
               const tile = (
                 <div
                   className="relative grid h-24 place-items-center overflow-hidden rounded-xl text-3xl"
@@ -158,14 +164,14 @@ export default function ProjectDetail({ slug }: { slug: string }) {
               );
 
               return (
-                <figure key={g.caption} className="glass rounded-2xl p-3">
+                <figure key={`${project.slug}-${i}`} className="glass rounded-2xl p-3">
                   {g.image ? (
                     <button
                       type="button"
                       onClick={() =>
                         setLightboxIndex(
                           galleryImages.findIndex(
-                            (x) => x.caption === g.caption,
+                            (x) => x.image === g.image,
                           ),
                         )
                       }
@@ -217,7 +223,9 @@ export default function ProjectDetail({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {(project.links.demo || project.links.link) && (
+            {(project.links.demo ||
+              project.links.link ||
+              !!project.links.extra?.length) && (
               <div className="mt-6 flex flex-col gap-3">
                 {project.links.demo && (
                   <a
@@ -240,6 +248,18 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                     <span aria-hidden>↗</span>
                   </a>
                 )}
+                {project.links.extra?.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-ghost w-full text-sm"
+                  >
+                    {l.label}
+                    <span aria-hidden>↗</span>
+                  </a>
+                ))}
               </div>
             )}
           </div>

@@ -6,21 +6,21 @@ export default function Hero() {
     >
       <div className="mx-auto max-w-3xl text-center">
         {/* Eyebrow pill */}
-        {/* <div className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-mist">
+        <div className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-mist">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orchid opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-orchid" />
           </span>
-          Machine learning · Responsible AI
-        </div> */}
+          Sabrina Hartung · AI Engineer
+        </div>
 
         {/* Headline */}
         <h1
           className="animate-rise-in font-display text-4xl font-bold leading-[1.1] sm:text-5xl md:text-6xl"
           style={{ animationDelay: "80ms" }}
         >
-          <span className="text-gradient animate-shimmer">Responsible AI</span>{" "}
-          from research to real world.
+          Building <span className="text-gradient animate-shimmer">agentic AI</span>{" "}
+          that can be measured and trusted.
         </h1>
 
         {/* Subline */}
@@ -28,7 +28,9 @@ export default function Hero() {
           className="animate-rise-in mx-auto mt-6 max-w-xl text-lg text-mist"
           style={{ animationDelay: "160ms" }}
         >
-           
+          I build LLM agents and retrieval systems, and the evaluation that
+          shows when they work, from responsible-AI research to enterprise
+          environments.
         </p>
 
         {/* CTAs */}
@@ -47,20 +49,19 @@ export default function Hero() {
 
         {/* Stats strip */}
         <div
-          className="animate-rise-in mx-auto mt-14 grid max-w-lg grid-cols-4 gap-4"
+          className="animate-rise-in mx-auto mt-14 grid max-w-xl grid-cols-3 gap-3 sm:gap-4"
           style={{ animationDelay: "320ms" }}
         >
           {[
-            { n: "6", l: "Years of Experience in Data Science and AI" },
-            { n: "5+", l: "Years of Experience in Software Development" },
-            { n: "7", l: "Published Scientific Papers on Responsible AI" },
-            { n: "∞", l: "Curiosity for new Technologies" },
+            { n: "6", l: "years in data science & AI" },
+            { n: "5+", l: "years in software development" },
+            { n: "7", l: "papers on responsible AI" },
           ].map((s) => (
-            <div key={s.l} className="glass rounded-2xl px-4 py-5">
+            <div key={s.l} className="glass rounded-2xl px-3 py-5 sm:px-4">
               <div className="font-display text-3xl font-bold text-ink">
                 {s.n}
               </div>
-              <div className="mt-1 text-sm text-faint">{s.l}</div>
+              <div className="mt-1 text-xs text-faint sm:text-sm">{s.l}</div>
             </div>
           ))}
         </div>
@@ -70,7 +71,7 @@ export default function Hero() {
       <a
         href="#projects"
         aria-label="Scroll down"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 [@media(min-height:820px)]:block"
       >
         <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-hairline/30 p-1.5">
           <span className="h-2 w-1 animate-float rounded-full bg-hairline/70" />

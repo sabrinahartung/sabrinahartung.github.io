@@ -2,8 +2,12 @@ import { useReveal } from "../hooks/useReveal";
 
 const skillGroups = [
   {
-    label: "AI / ML",
-    items: ["Python", "PyTorch", "Hugging Face", "LangChain", "RAG", "MCP", "Pandas"],
+    label: "Agentic AI & LLMs",
+    items: ["RAG", "MCP", "LangChain", "Hugging Face", "Ollama", "ChromaDB"],
+  },
+  {
+    label: "ML & Data",
+    items: ["Python", "PyTorch", "TensorFlow", "Pandas"],
   },
   { label: "Backend & APIs", items: ["FastAPI", "Django", "OpenAPI"] },
   { label: "Frontend", items: ["React", "TypeScript"] },
@@ -37,17 +41,15 @@ export default function About() {
             className="reveal mt-4 text-lg leading-relaxed text-mist"
             style={{ transitionDelay: "160ms" }}
           >
-           
+            My master's research focused on responsible AI in medicine:
+            stress-testing models for bias, privacy, robustness and
+            explainability. I bring the same lens to agentic systems, because
+            an agent is only as useful as your ability to tell when to trust it.
           </p>
 
-          {/* Skills — grouped, with a generalist framing line */}
-          <p
-            className="reveal mt-8 text-sm text-mist"
-            style={{ transitionDelay: "220ms" }}
-          >
-          </p>
+          {/* Skills — grouped */}
           <div
-            className="reveal mt-4 space-y-4"
+            className="reveal mt-8 space-y-4"
             style={{ transitionDelay: "260ms" }}
           >
             {skillGroups.map((g) => (

@@ -48,6 +48,8 @@ export type Project = {
     demo?: string;
     link?: string;
     description?: string;
+    /** Additional link buttons, rendered below `link` */
+    extra?: { href: string; label: string }[];
   };
   footnotes?: string;
   /**
@@ -56,6 +58,10 @@ export type Project = {
    * Omit the field entirely to hide the diagram for a project.
    */
   metrics?: MetricNode[];
+  /** Heading for the `metrics` diagram. Defaults to "Metrics coverage". */
+  metricsTitle?: string;
+  /** Plural noun for the leaf count, e.g. "milestones". Defaults to "metrics". */
+  metricsUnit?: string;
 };
 
 export type MetricNode = {
@@ -70,6 +76,59 @@ export type MetricNode = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "health-faq-agent",
+    title: "Health FAQ Agent",
+    tagline: "A local RAG agent for German statutory health insurance",
+    description:
+      "A retrieval-augmented agent, in progress, for questions about entitlements under German statutory health insurance (SGB V). Every answer should cite the statute it relies on, and everything runs locally without an API key.",
+    tags: ["RAG", "LLM Agents", "Ollama", "Python"],
+    emoji: "🩺",
+    accent: "linear-gradient(135deg, #0f766e, #22d3ee)",
+    badge: "In progress",
+    year: "2026",
+    role: "Solo project",
+    overview: [
+      "The Health FAQ Agent is being built to answer questions about entitlements under German statutory health insurance, such as co-payments, family coverage and hospital stays. Every answer should cite the provision of SGB V it relies on or be an explicit refusal. It runs entirely locally with Ollama and ChromaDB. The hard part is not getting an answer but knowing whether it is a good one: a corpus it is legally allowed to use, retrieval that can be measured, and a refusal boundary for medical questions that can be defended.",
+      "The corpus and retrieval layer are built and measured. The biggest lesson so far is that people and statutes speak different languages. A question like \"Am I covered through my parents as a student?\" shares no words with the provision that answers it. A hand-written FAQ layer bridging everyday German to legal language lifted Recall@1 from 68 % to 95 %. The agent service is being built next.",
+    ],
+    highlights: [
+      "Recall@1 raised from 68 % to 95 % on the golden set's 22 answerable questions by a hand-written FAQ layer (18 entries, 72 phrasings), with the optimistic bias of that number documented",
+      "Found and fixed a silent data-loss bug in ingestion: a provision-level filter was discarding 71 valid provisions, including hospital treatment and medicines. It surfaced because a test question returned the wrong provision",
+      "SGB V chunked along subsections, the unit of legal citation, so every retrieved chunk maps to exactly one source reference",
+      "Golden set of 33 questions that is never indexed, testing three behaviours: answer with a citation, refuse medical questions, and admit when the corpus is silent",
+      "Retrieval depth chosen from measured data: cosine distances cluster in a narrow band, so k = 8–10 instead of the usual tutorial default of 3",
+      "Corpus licensing researched before building: statutory text only, copyrighted insurer content deliberately excluded, no personal data",
+      "Runs fully locally with Ollama (bge-m3, llama3.2:3b) and ChromaDB, with no API keys",
+    ],
+    stack: [
+      "Python",
+      "Ollama",
+      "llama3.2:3b",
+      "bge-m3",
+      "ChromaDB",
+      "uv",
+      "MkDocs",
+      "GitHub Actions",
+    ],
+    gallery: [
+      { emoji: "📜", caption: "SGB V corpus, chunked by subsection" },
+      { emoji: "🔎", caption: "Retrieval with bge-m3 and ChromaDB" },
+      { emoji: "🦙", caption: "Local generation with llama3.2:3b via Ollama" },
+    ],
+    links: {
+      link: "https://github.com/sabrinahartung/health-faq-agent",
+      description: "Source code",
+      extra: [
+        {
+          href: "https://sabrinahartung.github.io/health-faq-agent/",
+          label: "Documentation & milestones",
+        },
+      ],
+    },
+    footnotes:
+      "Work in progress. The statutes used are non-official consolidated versions from gesetze-im-internet.de; only the Bundesgesetzblatt is authoritative. The agent gives no individual medical advice.",
+  },
   {
     slug: "verifai",
     title: "VERIFAI",
@@ -92,7 +151,7 @@ export const projects: Project[] = [
       "Centred on responsible AI: robustness, explainability and failure analysis",
       "Built around real, high-stakes datasets (skin cancer, medical text, heart disease)",
       "Foundation for my thesis on responsible AI in the medical field",
-      "Extended into the VERIFAI Test Lab , a FastAPI + React platform, Dockerised for CPU/GPU with live evaluation runs over WebSockets",
+      "Extended into the VERIFAI Test Lab, a FastAPI + React platform, Dockerised for CPU/GPU with live evaluation runs over WebSockets",
       "Adds large-language-model support, either via the Hugging Face Inference API or loaded locally with Transformers (PyTorch)",
       "Responsible-AI metrics for generative NLP: bias & toxicity, membership-inference (privacy), robustness and explainability",
     ],
@@ -242,7 +301,7 @@ export const projects: Project[] = [
               },
               {
                 name: "ROUGE",
-                description: "Recall-oriented overlap summarisation quality.",
+                description: "Recall-oriented overlap, a measure of summarisation quality.",
               },
               {
                 name: "Perplexity",
@@ -281,10 +340,10 @@ export const projects: Project[] = [
     ],
     cover: "/projects/verifai/verifai-logo-small.png",
     gallery: [
-      { image: "/projects/verifai/select_model.png", caption: "..."},
-      { image: "/projects/verifai/select_metrics.png", caption: "..."},
-      { image: "/projects/verifai/regard_prompt_analysis.png", caption: "..."},
-      { image: "/projects/verifai/regard_attribute_level_analysis.png", caption: "..."},
+      { image: "/projects/verifai/select_model.png", caption: "Step 1: choose a model to evaluate, loaded locally or via the Hugging Face Inference API" },
+      { image: "/projects/verifai/select_metrics.png", caption: "Step 2: select responsible-AI metrics for an LLM (fairness, security, privacy), here for Llama-3.2-1B" },
+      { image: "/projects/verifai/regard_prompt_analysis.png", caption: "Regard score per prompt, with the model's generation and its classified label" },
+      { image: "/projects/verifai/regard_attribute_level_analysis.png", caption: "Attribute-level analysis: average regard score per demographic group, with a generated summary" },
     ],
     links: { link: "https://www.researchgate.net/profile/Sabrina-Hartung", description: "Research Papers" },
   },
@@ -376,8 +435,8 @@ export const projects: Project[] = [
       "Ingests live IoT sensor data via The Things Network (LoRaWAN / MQTT)",
       "React dashboard with ML-based statistics and farm management",
       "Cloud-native, reproducible setup via Docker Compose",
-      "Probability model linking degree-day accumulation to pest lifecycle stages", 
-      "based on 10+ years of field-sampling data (2013–2024) Public forecasting dashboard supporting real-world pest-control decisions for orchard growers"
+      "Probability model linking degree-day accumulation to pest lifecycle stages, based on 10+ years of field-sampling data (2013–2024)",
+      "Public forecasting dashboard supporting real-world pest-control decisions for orchard growers",
     ],
     stack: ["Django", "Docker", "PostGIS", "PostgreSQL", "MQTT", "React"],
     cover: "/projects/samson/login-background.png",

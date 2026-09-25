@@ -24,9 +24,9 @@ export default function Contact() {
             Looking for my next role
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lg text-mist">
-            I'm open to AI / ML Engineer roles and research-driven teams building
-            responsible, real-world AI. If you're hiring or think I'd be a good
-            fit I'd love to hear from you.
+            I'm open to AI Engineer roles, especially in agentic AI, and to
+            research-driven teams building responsible, real-world AI. If
+            you're hiring or think I'd be a good fit, I'd love to hear from you.
           </p>
 
           {/* Primary actions */}
