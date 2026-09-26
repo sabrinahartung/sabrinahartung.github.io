@@ -40,7 +40,7 @@ export default function App() {
         <ProjectDetail slug={route.slug} />
       ) : (
         <main>
-          <Hero />
+          {/*<Hero />*/}
           <Projects />
           <About />
           <Contact />
