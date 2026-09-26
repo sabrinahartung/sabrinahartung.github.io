@@ -6,6 +6,17 @@
  *  `#/project/<slug>`, so keep every `slug` unique.
  * ─────────────────────────────────────────────────────────────
  */
+import type { DiagramKey } from "../components/diagrams";
+
+export type RoadmapPhase = {
+  title: string;
+  /** Short status label shown as a pill, e.g. "Done · v0.1.0" */
+  status: string;
+  /** Drives the colour of the timeline dot and pill */
+  state: "done" | "active" | "planned";
+  items: { text: string; done?: boolean }[];
+};
+
 export type Project = {
   /** URL slug — must be unique. Used in `#/project/<slug>`. */
   slug: string;
@@ -62,6 +73,15 @@ export type Project = {
   metricsTitle?: string;
   /** Plural noun for the leaf count, e.g. "milestones". Defaults to "metrics". */
   metricsUnit?: string;
+  /** Optional architecture diagram (a component registered in components/diagrams) */
+  architecture?: {
+    diagram: DiagramKey;
+    /** Section heading. Defaults to "Architecture". */
+    title?: string;
+    caption?: string;
+  };
+  /** Optional roadmap: phases in order, each with a checklist */
+  roadmap?: { intro?: string; phases: RoadmapPhase[] };
 };
 
 export type MetricNode = {
@@ -111,6 +131,74 @@ export const projects: Project[] = [
       "MkDocs",
       "GitHub Actions",
     ],
+    architecture: {
+      diagram: "health-faq-agent",
+      caption:
+        "Ingestion runs offline and is built. At query time an agent behind a FastAPI endpoint decides which tool to call, retrieval or glossary, and answers with a local model. Observability comes after the service is containerised.",
+    },
+    roadmap: {
+      intro:
+        "Planned as milestones; each finished one is tagged as a GitHub release. The full plan is in the documentation.",
+      phases: [
+        {
+          title: "Corpus and retrieval baseline",
+          status: "Done · v0.1.0",
+          state: "done",
+          items: [
+            { text: "SGB V fetched reproducibly, licensing documented", done: true },
+            { text: "3,002 chunks indexed in ChromaDB, cut along subsections", done: true },
+            { text: "Multilingual embeddings (bge-m3), chosen for a German corpus", done: true },
+            { text: "Hand-written FAQ layer bridging everyday to legal phrasing", done: true },
+            { text: "33-question evaluation set, deliberately never indexed", done: true },
+            { text: "Retrieval measured: Recall@1 of 95 %, against 68 % without the FAQ layer", done: true },
+          ],
+        },
+        {
+          title: "Agent as a service",
+          status: "In progress",
+          state: "active",
+          items: [
+            { text: "POST /ask returning a validated response schema with citations" },
+            { text: "Retrieval tool plus a second tool, so the agent genuinely has a choice" },
+            { text: "Citations validated against the retrieved context, not merely parsed" },
+            { text: "Refusal path for individual medical questions" },
+            { text: "GET /health verifying Ollama, the model and the index" },
+          ],
+        },
+        {
+          title: "Container and observability",
+          status: "Planned",
+          state: "planned",
+          items: [
+            { text: "Multi-stage Dockerfile and docker compose, Ollama kept native for GPU access" },
+            { text: "Langfuse tracing every tool call and LLM call as its own span" },
+            { text: "Prometheus and Grafana: request rate, p95 latency, error rate, token use" },
+          ],
+        },
+        {
+          title: "Evaluation and responsible AI",
+          status: "Groundwork in place",
+          state: "active",
+          items: [
+            { text: "Evaluation set covering answerable, refusal and out-of-corpus questions", done: true },
+            { text: "Retrieval harness reporting Recall@k and mean rank", done: true },
+            { text: "Groundedness and answer quality scored by an LLM judge" },
+            { text: "Refusal rate measured, including false refusals" },
+            { text: "Robustness: every question repeated with typos and as a paraphrase" },
+          ],
+        },
+        {
+          title: "CI/CD",
+          status: "Docs pipeline in place",
+          state: "active",
+          items: [
+            { text: "Documentation built and deployed to GitHub Pages on every push", done: true },
+            { text: "Lint, tests and container build on every push and pull request" },
+            { text: "Evaluation suite as a separate, manually triggered workflow" },
+          ],
+        },
+      ],
+    },
     gallery: [
       { emoji: "📜", caption: "SGB V corpus, chunked by subsection" },
       { emoji: "🔎", caption: "Retrieval with bge-m3 and ChromaDB" },
@@ -382,8 +470,8 @@ export const projects: Project[] = [
     title: "HAM10000 Skin Lesion Classifier",
     tagline: "Dermatoscopic skin-lesion classification in the browser",
     description:
-      "A deep-learning web app that sorts dermatoscopic images into the seven HAM10000 lesion types: melanoma, carcinomas, benign moles and more with a full per-class probability breakdown.",
-    tags: ["Computer Vision", "Deep Learning", "Streamlit", "Python"],
+      "A deep-learning web app that sorts dermatoscopic images into the seven HAM10000 lesion types: melanoma, carcinomas, benign moles and more, with a full per-class probability breakdown and Grad-CAM heatmaps showing where the model looked.",
+    tags: ["Computer Vision", "Explainable AI", "Streamlit", "Python"],
     emoji: "🔬",
     accent: "linear-gradient(135deg, #34d399, #22d3ee)",
     badge: "Live demo",
@@ -392,17 +480,20 @@ export const projects: Project[] = [
     overview: [
       "An interactive web app that classifies dermatoscopic skin-lesion images into the seven diagnostic categories of the HAM10000 dataset from melanoma and basal-cell carcinoma to benign keratoses and moles. Upload an image (or pick one of the built-in examples) and the model returns its top prediction, a confidence score and the full probability distribution across every class.",
       "The interesting challenge is the data itself: HAM10000 is heavily imbalanced, benign nevi dominate while melanoma is comparatively rare, so the work focused as much on honest evaluation as on headline accuracy. A ResNet, fine-tuned with transfer learning, does the classification, and the app deliberately surfaces the model's uncertainty instead of hiding it behind a single label.",
+      "To show why the model decides as it does, the app adds Grad-CAM explainability: heatmaps over the image for the two classes in contention, drawn on one shared colour scale so weaker evidence really looks weaker. The app also flags when a map should not be read as an explanation, because the class has already been ruled out or the signal is close to noise, and points out that heat on rulers or plain skin suggests the model latched onto an artefact rather than the lesion.",
       "It's deployed as a Streamlit app, so anyone can try it live in the browser, no setup required, and the full model-training code is open-sourced on GitHub.",
     ],
     highlights: [
       "Classifies dermatoscopic images into the 7 HAM10000 lesion classes (incl. melanoma, BCC, benign keratoses, nevi)",
       "ResNet fine-tuned with transfer learning on the imbalanced ~10k-image HAM10000 dataset",
       "Surfaces top prediction, confidence and the full per-class probability distribution",
+      "Grad-CAM explainability: heatmaps for the top two classes from the last ResNet18 block, on a shared scale so their strengths stay comparable",
+      "Warns when a heatmap is not a real explanation, e.g. for classes the model has ruled out (below 5 %) or maps too weak to trust",
       "Built-in example images and instant, in-browser inference via Streamlit",
       "Full model-training pipeline (data prep → training → export) open-sourced on GitHub",
       "Emphasis on honest evaluation under class imbalance, not just top-line accuracy",
     ],
-    stack: ["Python", "PyTorch", "ResNet (transfer learning)", "Streamlit", "NumPy", "Pillow"],
+    stack: ["Python", "PyTorch", "ResNet (transfer learning)", "Grad-CAM", "Streamlit", "NumPy", "Pillow"],
     gallery: [
             { image: "/projects/skin-lesion-classifier/skin-lesion-classifier.mp4", caption: "Screen Capture of the Skin Lesion Classifier App"},
     ],
@@ -439,13 +530,29 @@ export const projects: Project[] = [
       "Public forecasting dashboard supporting real-world pest-control decisions for orchard growers",
     ],
     stack: ["Django", "Docker", "PostGIS", "PostgreSQL", "MQTT", "React"],
+    architecture: {
+      diagram: "samson",
+      title: "From field to forecast",
+      caption:
+        "Condensed from the project poster: farm data flows into a modular platform, and a decade of field history feeds a probability model for pest forecasts.",
+    },
     cover: "/projects/samson/login-background.png",
     gallery: [
       { image: "/projects/samson/1.png", caption: "This bar chart visualizes the probability of green stink bug nymph hatching as predicted by the model. The color scale is based on cumulative degree days for the year 2025 and indicates the urgency of potential control measures. On April 21, 2025, with 219.7 DD, the model predicted that the calculated threshold would be exceeded. This is based on calculations from recent years."},
       { image: "/projects/samson/api-screenshot.png", caption: "API Endpoints"},
     ],
-    links: { link: "https://samson-projekt.de", description: "Project Website" },
-    footnotes: "In collaboration with Fraunhofer IFAM, TUHH, and Esteburg Obstbauzentrum Jork, funded by the German Federal Ministry of Food and Agriculture"
+    links: {
+      link: "https://samson-projekt.de",
+      description: "Project Website",
+      extra: [
+        {
+          href: "/projects/samson/samson-poster.pdf",
+          label: "Project poster (PDF, German)",
+        },
+      ],
+    },
+    footnotes:
+      "In collaboration with Fraunhofer IFAM, TUHH, HAW Hamburg, hochschule 21 and Esteburg Obstbauzentrum Jork, funded by the German Federal Ministry of Agriculture, Food and Regional Identity."
   },
 ];
 
