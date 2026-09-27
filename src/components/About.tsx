@@ -47,6 +47,15 @@ export default function About() {
             explainability. I bring the same lens to agentic systems, because
             an agent is only as useful as your ability to tell when to trust it.
           </p>
+          <p
+            className="reveal mt-4 text-lg leading-relaxed text-mist"
+            style={{ transitionDelay: "160ms" }}
+          >
+          What interests me most is the work between a promising model and a useful application:
+            testing its limits, making its results understandable, and building something people can actually use.
+
+          </p>
+
 
           {/* Skills — grouped */}
           <div
@@ -93,7 +102,7 @@ export default function About() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="glass-strong absolute bottom-5 left-5 right-5 rounded-2xl px-4 py-3 text-center text-sm text-mist">
-              “If you love what you do, you'll never have to work a day in your life.”
+              Sabrina Hartung · AI Engineer
             </div>
           </div>
         </div>
