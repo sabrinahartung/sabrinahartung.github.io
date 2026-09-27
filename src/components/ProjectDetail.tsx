@@ -37,9 +37,11 @@ export default function ProjectDetail({ slug }: { slug: string }) {
   const prev = projects[(idx - 1 + projects.length) % projects.length];
   const next = projects[(idx + 1) % projects.length];
 
+  // `gallery` is optional; treat a missing one as empty.
+  const gallery = project.gallery ?? [];
   // Only real images are enlargeable; the lightbox navigates among these.
-  const galleryImages = project.gallery.filter(
-    (g): g is { image: string; caption: string } => Boolean(g.image),
+  const galleryImages = gallery.filter(
+    (g): g is { image: string; caption?: string } => Boolean(g.image),
   );
 
   return (
@@ -223,7 +225,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
             <>
               <h2 className="mt-10 font-display text-2xl font-medium">Gallery</h2>
               <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                {project.gallery.map((g, i) => {
+                {gallery.map((g, i) => {
                   const tile = (
                     <div
                       className="relative grid h-24 place-items-center overflow-hidden rounded-xl text-3xl"
@@ -274,7 +276,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                               ),
                             )
                           }
-                          aria-label={`Enlarge image: ${g.caption}`}
+                          aria-label={g.caption ? `Enlarge image: ${g.caption}` : "Enlarge image"}
                           className="group/thumb block w-full cursor-zoom-in rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orchid/70"
                         >
                           {tile}

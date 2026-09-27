@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { asset, isVideo } from "../lib/asset";
 
-export type LightboxImage = { image?: string; caption: string };
+export type LightboxImage = { image?: string; caption?: string };
 
 /**
  * Full-screen image viewer. Controlled by the parent via `index`:
@@ -103,7 +103,7 @@ export default function Lightbox({
         ) : (
           <img
             src={asset(current.image!)}
-            alt={current.caption}
+            alt={current.caption ?? ""}
             className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain shadow-glass"
           />
         )}

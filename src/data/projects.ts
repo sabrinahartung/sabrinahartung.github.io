@@ -54,7 +54,7 @@ export type Project = {
    * (a path inside `public/`, e.g. "projects/verifai/1.png"); otherwise it
    * falls back to the `emoji` placeholder.
    */
-  gallery: { image?: string; emoji?: string; caption: string }[];
+  gallery?: { image?: string; emoji?: string; caption?: string }[];
   links: {
     demo?: string;
     link?: string;
@@ -199,11 +199,6 @@ export const projects: Project[] = [
         },
       ],
     },
-    gallery: [
-      { emoji: "📜", caption: "SGB V corpus, chunked by subsection" },
-      { emoji: "🔎", caption: "Retrieval with bge-m3 and ChromaDB" },
-      { emoji: "🦙", caption: "Local generation with llama3.2:3b via Ollama" },
-    ],
     links: {
       link: "https://github.com/sabrinahartung/health-faq-agent",
       description: "Source code",
@@ -435,36 +430,6 @@ export const projects: Project[] = [
     ],
     links: { link: "https://www.researchgate.net/profile/Sabrina-Hartung", description: "Research Papers" },
   },
-  // {
-  //   slug: "konverter",
-  //   title: "Konverter",
-  //   tagline: "Convert AI Agents between systems",
-  //   description:
-  //     "A focused utility for converting files and data between formats — built to remove a small, repetitive annoyance from a daily workflow.",
-  //   tags: ["Python", "TypeScript", "Tooling"],
-  //   emoji: "🔄",
-  //   accent: "linear-gradient(135deg, #fbbf24, #f472b6)",
-  //   badge: "Tooling",
-  //   year: "2024",
-  //   role: "Solo project",
-  //   overview: [
-  //     "Konverter is a small, focused tool for converting data between formats quickly and predictably. It grew out of a recurring task that was just annoying enough to be worth automating properly.",
-  //     "The emphasis is on doing one thing well: clear input, clear output, sensible defaults and no surprises. (Placeholder copy — refine with the real story and screenshots.)",
-  //   ],
-  //   highlights: [
-  //     "Converts between formats with sensible defaults",
-  //     "Small, single-purpose and easy to reason about",
-  //     "Built to fit into an existing workflow",
-  //     "Placeholder highlight — replace with the real details",
-  //   ],
-  //   stack: ["Python", "TypeScript"],
-  //   gallery: [
-  //     { emoji: "📥", caption: "Input" },
-  //     { emoji: "⚙️", caption: "Convert" },
-  //     { emoji: "📤", caption: "Output" },
-  //   ],
-  //   links: { link: "#" },
-  // },
   {
     slug: "skin-lesion-classifier",
     title: "HAM10000 Skin Lesion Classifier",
@@ -554,6 +519,37 @@ export const projects: Project[] = [
     footnotes:
       "In collaboration with Fraunhofer IFAM, TUHH, HAW Hamburg, hochschule 21 and Esteburg Obstbauzentrum Jork, funded by the German Federal Ministry of Agriculture, Food and Regional Identity."
   },
+  {
+    slug: "predictive-maintenance",
+    title: "Predictive maintenance: physics vs. black box",
+    tagline: "Can a machine learning model predict milling machine failures better than a few lines of physics?",
+    description:
+      "This project answers that question on the AI4I 2020 dataset, and turns the answer into an interactive maintenance app.",
+    tags: ["Explainable AI", "Predictive Maintenance", "Streamlit", "Python"],
+    emoji: "⚙️",
+    accent: "linear-gradient(135deg, #f97316, #facc15)",
+    badge: "Live demo",
+    year: "2025",
+    role: "Data Science",
+    overview: [
+      "Can a machine learning model predict milling machine failures better than a few lines of physics? Using explainable AI on 10,000 machine processes, I found that three simple physical rules catch 85% of all failures with zero false alarms. I turned the result into an interactive maintenance app that recommends the cheapest action for each machine reading and cuts maintenance costs by about 77%.",
+    ],
+    highlights: [
+      "Physics beat the black box: three rules found with SHAP explainability reach F1 0.92 with 100% precision, compared with 0.78 for a gradient boosting model.",
+      "Explainable AI as a discovery tool: SHAP interaction plots revealed three hidden failure mechanisms (power, overstrain, heat dissipation), and all three matched the data exactly.",
+      "Decisions based on cost, not accuracy: a cost model with honest cross-validation showed that physics rules plus preventive tool replacement beat every pure ML strategy.",
+      "Trustworthy probabilities: a calibrated hybrid model (PR-AUC 0.913) whose risk scores match observed failure rates, so an alarm threshold follows directly from the cost ratio.",
+      "Critical data analysis: I quantified the prediction ceiling (15% of failures carry no signal), found 27 labels decided by floating-point rounding, and fixed a threshold bug in the original analysis.",
+      "Production-ready engineering: a tested Python package (37 tests), a training CLI, and a CI pipeline that also re-runs every analysis notebook.",
+      "Interactive demo and documentation: a Streamlit app that explains every recommendation, plus an MkDocs site with a guide to reading the app.",
+    ],
+    stack: ["Python", "scikit-learn", "SHAP", "pandas", "NumPy", "Matplotlib", "seaborn", "Streamlit", "MkDocs", "pytest", "GitHub Actions", "uv"],
+    links: {
+      demo: "https://predictive-maintenance-physics-vs-ml.streamlit.app/",
+      link: "https://github.com/sabrinahartung/predictive-maintenance-physics-vs-ml/",
+      description: "Source code",
+    },
+  }
 ];
 
 /** Look up a single project by its slug. */

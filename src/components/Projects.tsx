@@ -20,9 +20,8 @@ export default function Projects() {
             className="reveal mt-4 text-lg text-mist"
             style={{ transitionDelay: "80ms" }}
           >
-            From an LLM agent I'm building right now to research prototypes
-            and production platforms. Each one shows how I build, and how I
-            check that it works. Click a tile to dive in.
+            AI projects from research and from my own time, each showing the
+            process and the results. Click a tile to dive in.
           </p>
         </div>
 
