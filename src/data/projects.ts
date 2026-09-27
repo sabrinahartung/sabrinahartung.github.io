@@ -209,6 +209,7 @@ export const projects: Project[] = [
         },
       ],
     },
+    cover: "/projects/health_faq/health_faq_agent_cover.png",
     footnotes:
       "Work in progress. The statutes used are non-official consolidated versions from gesetze-im-internet.de; only the Bundesgesetzblatt is authoritative. The agent gives no individual medical advice.",
   },
@@ -421,7 +422,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    cover: "/projects/verifai/verifai-logo-small.png",
+    cover: "/projects/verifai/verifai_cover.png",
     gallery: [
       { image: "/projects/verifai/select_model.png", caption: "Step 1: choose a model to evaluate, loaded locally or via the Hugging Face Inference API" },
       { image: "/projects/verifai/select_metrics.png", caption: "Step 2: select responsible-AI metrics for an LLM (fairness, security, privacy), here for Llama-3.2-1B" },
@@ -467,6 +468,7 @@ export const projects: Project[] = [
       link: "https://github.com/sabrinahartung/ham10000-skin-lesion-classification",
       description: "Source code (training)",
     },
+    cover: "/projects/skin-lesion-classifier/skinlesion_cover.png",
     footnotes:
       "This is a Research / portfolio project, not a medical device and not intended for diagnostic use.",
   },
@@ -501,11 +503,6 @@ export const projects: Project[] = [
       caption:
         "Condensed from the project poster: farm data flows into a modular platform, and a decade of field history feeds a probability model for pest forecasts.",
     },
-    cover: "/projects/samson/login-background.png",
-    gallery: [
-      { image: "/projects/samson/1.png", caption: "This bar chart visualizes the probability of green stink bug nymph hatching as predicted by the model. The color scale is based on cumulative degree days for the year 2025 and indicates the urgency of potential control measures. On April 21, 2025, with 219.7 DD, the model predicted that the calculated threshold would be exceeded. This is based on calculations from recent years."},
-      { image: "/projects/samson/api-screenshot.png", caption: "API Endpoints"},
-    ],
     links: {
       link: "https://samson-projekt.de",
       description: "Project Website",
@@ -516,6 +513,7 @@ export const projects: Project[] = [
         },
       ],
     },
+    cover: "/projects/samson/samson_cover.png",
     footnotes:
       "In collaboration with Fraunhofer IFAM, TUHH, HAW Hamburg, hochschule 21 and Esteburg Obstbauzentrum Jork, funded by the German Federal Ministry of Agriculture, Food and Regional Identity."
   },
@@ -549,6 +547,8 @@ export const projects: Project[] = [
       link: "https://github.com/sabrinahartung/predictive-maintenance-physics-vs-ml/",
       description: "Source code",
     },
+    cover: "/projects/predictive_maintenance/predictive_maintenance_cover.png",
+
   }
 ];
 
