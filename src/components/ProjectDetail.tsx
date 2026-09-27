@@ -63,6 +63,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
           <img
             src={asset(project.cover)}
             alt={project.title}
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
@@ -247,6 +248,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
                               src={asset(g.image)}
                               alt={g.caption}
                               loading="lazy"
+                              decoding="async"
                               className="absolute inset-0 h-full w-full object-cover"
                             />
                           )}

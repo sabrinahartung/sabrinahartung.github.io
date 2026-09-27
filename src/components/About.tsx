@@ -89,6 +89,7 @@ export default function About() {
               width={1000}
               height={1000}
               loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="glass-strong absolute bottom-5 left-5 right-5 rounded-2xl px-4 py-3 text-center text-sm text-mist">

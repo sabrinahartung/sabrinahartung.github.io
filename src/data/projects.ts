@@ -209,7 +209,7 @@ export const projects: Project[] = [
         },
       ],
     },
-    cover: "/projects/health_faq/health_faq_agent_cover.png",
+    cover: "/projects/health_faq/health_faq_agent_cover.jpg",
     footnotes:
       "Work in progress. The statutes used are non-official consolidated versions from gesetze-im-internet.de; only the Bundesgesetzblatt is authoritative. The agent gives no individual medical advice.",
   },
@@ -422,7 +422,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    cover: "/projects/verifai/verifai_cover.png",
+    cover: "/projects/verifai/verifai_cover.jpg",
     gallery: [
       { image: "/projects/verifai/select_model.png", caption: "Step 1: choose a model to evaluate, loaded locally or via the Hugging Face Inference API" },
       { image: "/projects/verifai/select_metrics.png", caption: "Step 2: select responsible-AI metrics for an LLM (fairness, security, privacy), here for Llama-3.2-1B" },
@@ -468,7 +468,7 @@ export const projects: Project[] = [
       link: "https://github.com/sabrinahartung/ham10000-skin-lesion-classification",
       description: "Source code (training)",
     },
-    cover: "/projects/skin-lesion-classifier/skinlesion_cover.png",
+    cover: "/projects/skin-lesion-classifier/skinlesion_cover.jpg",
     footnotes:
       "This is a Research / portfolio project, not a medical device and not intended for diagnostic use.",
   },
@@ -513,7 +513,7 @@ export const projects: Project[] = [
         },
       ],
     },
-    cover: "/projects/samson/samson_cover.png",
+    cover: "/projects/samson/samson_cover.jpg",
     footnotes:
       "In collaboration with Fraunhofer IFAM, TUHH, HAW Hamburg, hochschule 21 and Esteburg Obstbauzentrum Jork, funded by the German Federal Ministry of Agriculture, Food and Regional Identity."
   },
@@ -547,7 +547,7 @@ export const projects: Project[] = [
       link: "https://github.com/sabrinahartung/predictive-maintenance-physics-vs-ml/",
       description: "Source code",
     },
-    cover: "/projects/predictive_maintenance/predictive_maintenance_cover.png",
+    cover: "/projects/predictive_maintenance/predictive_maintenance_cover.jpg",
 
   }
 ];

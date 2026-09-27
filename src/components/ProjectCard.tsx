@@ -70,6 +70,7 @@ export default function ProjectCard({
               src={asset(project.cover)}
               alt=""
               loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (

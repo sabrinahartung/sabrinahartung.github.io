@@ -11,10 +11,21 @@ export default function Background() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Drifting blobs */}
-      <div className="absolute -left-40 -top-40 h-[38rem] w-[38rem] animate-drift rounded-full bg-violet/30 blur-[110px]" />
-      <div className="absolute -right-32 top-1/4 h-[34rem] w-[34rem] animate-drift-slow rounded-full bg-azure/30 blur-[120px]" />
-      <div className="absolute bottom-[-10rem] left-1/3 h-[30rem] w-[30rem] animate-drift rounded-full bg-orchid/25 blur-[120px]" />
+      {/* Drifting blobs. Soft edges come from radial gradients, not a CSS
+          blur filter: a 110px blur on large moving elements is re-rendered
+          every frame and makes the whole page lag. */}
+      <div
+        className="absolute -left-60 -top-60 h-[52rem] w-[52rem] animate-drift"
+        style={{ background: "radial-gradient(circle, rgb(var(--violet) / 0.30) 0%, rgb(var(--violet) / 0.12) 35%, transparent 65%)" }}
+      />
+      <div
+        className="absolute -right-52 top-[10%] h-[48rem] w-[48rem] animate-drift-slow"
+        style={{ background: "radial-gradient(circle, rgb(var(--azure) / 0.30) 0%, rgb(var(--azure) / 0.12) 35%, transparent 65%)" }}
+      />
+      <div
+        className="absolute bottom-[-18rem] left-[25%] h-[44rem] w-[44rem] animate-drift"
+        style={{ background: "radial-gradient(circle, rgb(var(--orchid) / 0.25) 0%, rgb(var(--orchid) / 0.10) 35%, transparent 65%)" }}
+      />
 
       {/* Faint grid (line color follows the theme via --grid) */}
       <div
