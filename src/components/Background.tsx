@@ -1,6 +1,6 @@
 /**
  * Fixed, full-viewport ambient background:
- *  - three slowly drifting gradient "blobs" in purple/blue/orchid
+ *  - three soft gradient "blobs" in purple/blue/orchid
  *  - a subtle grid overlay for depth
  *  - a soft vignette so foreground content stays readable
  * Purely decorative → aria-hidden and pointer-events-none.
@@ -11,19 +11,19 @@ export default function Background() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Drifting blobs. Soft edges come from radial gradients, not a CSS
-          blur filter: a 110px blur on large moving elements is re-rendered
-          every frame and makes the whole page lag. */}
+      {/* Ambient blobs. Deliberately static and drawn with radial gradients
+          instead of a CSS blur filter: moving or filtered backgrounds force
+          every glass surface above them to be recomposited each frame. */}
       <div
-        className="absolute -left-60 -top-60 h-[52rem] w-[52rem] animate-drift"
+        className="absolute -left-60 -top-60 h-[52rem] w-[52rem]"
         style={{ background: "radial-gradient(circle, rgb(var(--violet) / 0.30) 0%, rgb(var(--violet) / 0.12) 35%, transparent 65%)" }}
       />
       <div
-        className="absolute -right-52 top-[10%] h-[48rem] w-[48rem] animate-drift-slow"
+        className="absolute -right-52 top-[10%] h-[48rem] w-[48rem]"
         style={{ background: "radial-gradient(circle, rgb(var(--azure) / 0.30) 0%, rgb(var(--azure) / 0.12) 35%, transparent 65%)" }}
       />
       <div
-        className="absolute bottom-[-18rem] left-[25%] h-[44rem] w-[44rem] animate-drift"
+        className="absolute bottom-[-18rem] left-[25%] h-[44rem] w-[44rem]"
         style={{ background: "radial-gradient(circle, rgb(var(--orchid) / 0.25) 0%, rgb(var(--orchid) / 0.10) 35%, transparent 65%)" }}
       />
 
